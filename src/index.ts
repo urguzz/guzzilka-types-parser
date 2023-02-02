@@ -5,7 +5,7 @@ const xml = readFileSync('src/types.xml', 'utf8');
 const js = xml2js(xml, { ignoreComment: true, alwaysChildren: true });
 const types = js.elements[0].elements;
 
-const names = types.flatMap(({ attributes }: any) => attributes.name).join('\n');
+const names = types.flatMap(({ attributes }: any) => attributes.name);
 
 const categories = [
   ...new Set<string>(
@@ -13,7 +13,7 @@ const categories = [
       .flatMap(({ elements }: any) => elements.find(({ name }: any) => name === 'category')?.attributes.name)
       .filter(Boolean),
   ),
-].join('\n');
+];
 
 const categoryMap = new Map<string, string[]>();
 types
@@ -24,8 +24,8 @@ types
   .forEach(({ name, category }: any) =>
     categoryMap.has(category) ? categoryMap.get(category)?.push(name) : categoryMap.set(category, [name]),
   );
-const namesAndCategories = [...categoryMap.entries()].map(([k, v]) => `Category: ${k}\n${v.join('\n')}`).join('\n\n');
+const namesAndCategories = Object.fromEntries(categoryMap.entries());
 
-writeFileSync('./names.txt', names);
-writeFileSync('./categories.txt', categories);
-writeFileSync('./names-and-categories.txt', namesAndCategories);
+writeFileSync('./names.json', JSON.stringify(names));
+writeFileSync('./categories.json', JSON.stringify(categories));
+writeFileSync('./names-and-categories.json', JSON.stringify(namesAndCategories));
