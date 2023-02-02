@@ -1,0 +1,20 @@
+{
+  "name": "guzzilka-types-parser",
+  "version": "1.0.0",
+  "repository": "https://github.com/urguzz/guzzilka-types-parser.git",
+  "author": "Sergey Yakimovich <ya.sergey137@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.5"
+  }
+}
