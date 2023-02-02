@@ -1,0 +1,7 @@
+weapons
+food
+clothes
+tools
+containers
+vehiclesparts
+explosives
